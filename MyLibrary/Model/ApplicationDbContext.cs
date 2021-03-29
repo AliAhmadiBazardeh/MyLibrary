@@ -13,5 +13,7 @@ namespace MyLibrary.Model
         {
 
         }
+
+        public DbSet<Book> Books { get; set; }
     }
 }
