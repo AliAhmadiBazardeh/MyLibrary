@@ -1,0 +1,42 @@
+﻿@page
+@using System.Linq
+@model MyLibrary.Pages.BookList.IndexModel
+@{
+}
+
+<div  class="col-12 border p-3 mt-5">
+    @if(Model.Books.Any())
+    { 
+    <table class="table table-striped border">
+        <tr class="table-secondary">
+            <th>ID</th>
+            <th >
+                <label asp-for="Books.FirstOrDefault().Title"></label>   
+            </th>
+            <th>Author</th>
+            <th>Create Time</th>
+            <th></th>
+        </tr>
+        
+        <tr>
+            @foreach (var item in Model.Books)
+            {
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.Author</td>
+            <td>@item.CreateTime</td>
+                <td>
+                    <a class="btn btn-warning">Edit</a>
+                    <a class="btn btn-danger">Delete</a>
+                </td>
+            }
+        </tr>
+    </table>
+    }
+    else
+    {
+        <p>No books available ...</p>
+    }
+   
+
+</div>
