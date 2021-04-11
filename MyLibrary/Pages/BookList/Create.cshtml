@@ -1,0 +1,36 @@
+﻿@page
+@model MyLibrary.Pages.BookList.CreateModel
+@{
+}
+<br />
+<h2 class="text-info">Create New Book</h2>
+<hr />
+<div class="border container" style="padding: 30px">
+    <form   method="post">
+        <div class="form-group row">
+            <div class="col-4 text-right">
+                <label asp-for="Book.Title"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Book.Title" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4 text-right">
+                <label asp-for="Book.Author"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Book.Author" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4 text-right">
+            </div>
+            <div class="col-6">
+                <input type="submit" value="Save" class="btn btn-outline-success" />
+                <a class="btn btn-link" asp-page="Index">Back to list</a>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -8,19 +8,29 @@ using MyLibrary.Model;
 
 namespace MyLibrary.Pages.BookList
 {
-    public class IndexModel : PageModel
+    public class CreateModel : PageModel
     {
         private ApplicationDbContext _context;
-        public IndexModel(ApplicationDbContext context)
+
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }
-        public IEnumerable<Book> Books { get; set; }
-        public string PageName { get; set; }
+
+        [BindProperty]
+        public Book Book { get; set; }
+
         public void OnGet()
         {
-            PageName = "Book list";
-            Books = _context.Books.ToList();
         }
+
+        public IActionResult OnPost()
+        {
+            _context.Books.Add(Book);
+            _context.SaveChanges();
+            return RedirectToPage("Index");
+        }
+    
+
     }
 }
