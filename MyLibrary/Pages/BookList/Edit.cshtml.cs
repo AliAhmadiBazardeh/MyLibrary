@@ -8,11 +8,11 @@ using MyLibrary.Model;
 
 namespace MyLibrary.Pages.BookList
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private ApplicationDbContext _context;
 
-        public CreateModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,21 +20,25 @@ namespace MyLibrary.Pages.BookList
         [BindProperty]
         public Book Book { get; set; }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            Book = _context.Books.Find(id);
         }
 
-        public IActionResult OnPost()
+        public ActionResult OnPost()
         {
-            if(!ModelState.IsValid)
+            if(ModelState.IsValid)
+            {
+                _context.Update(Book);
+                _context.SaveChanges();
+
+                return RedirectToPage("Index");
+                
+            }
+            else
             {
                 return Page();
             }
-            _context.Books.Add(Book);
-            _context.SaveChanges();
-           return RedirectToPage("Index");
         }
-    
-
     }
 }

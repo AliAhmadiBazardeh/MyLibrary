@@ -1,12 +1,14 @@
 ﻿@page
-@model MyLibrary.Pages.BookList.CreateModel
+@model MyLibrary.Pages.BookList.EditModel
 @{
 }
+
 <br />
-<h2 class="text-info">Create New Book</h2>
+<h2 class="text-info">Edit '@Model.Book.Title'</h2>
 <hr />
 <div class="border container" style="padding: 30px">
-    <form    method="post">
+    <form method="post">
+        <input type="hidden" asp-for="Book.Id" value="@Model.Book.Id" />
         <div asp-validation-summery="All"></div>
         <div class="form-group row">
             <div class="col-4 text-right">
@@ -30,7 +32,7 @@
             <div class="col-4 text-right">
             </div>
             <div class="col-6">
-                <input type="submit" value="Save" class="btn btn-outline-success" />            
+                <input type="submit" value="Update" class="btn btn-outline-primary" />
                 <a class="btn btn-link" asp-page="Index">Back to list</a>
             </div>
         </div>
